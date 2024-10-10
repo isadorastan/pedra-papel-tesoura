@@ -15,9 +15,9 @@
       <div class="icon">🤖</div>
       <h3>Escolha a sua arma:</h3>
       <div class="options">
-        <div class="icon">👊🏼</div>
-        <div class="icon">✋🏼</div>
-        <div class="icon">✌🏼</div>
+        <div class="icon" id="rock">👊🏼</div>
+        <div class="icon" id="paper">✋🏼</div>
+        <div class="icon" id="scissor">✌🏼</div>
       </div>
     </div>
     <div id="result">
@@ -27,6 +27,27 @@
       <button>Jogar novamente!</button>
     </div>
   </div>
+
+  <script>
+    // elementos clicáveis
+    const rockEl = document.getElementById('rock');
+    const paperEl = document.getElementById('paper');
+    const scissorEl = document.getElementById('scissor');
+
+    // event listeners
+    rockEl.addEventListener('click', startGame);
+    paperEl.addEventListener('click', startGame);
+    scissorEl.addEventListener('click', startGame);
+
+    // Variaveis de Estado
+    let userChoice = '';
+    let robotChoice = '';
+
+    function startGame(e) {
+      userChoice = e.target.id;
+    }
+
+  </script>
 </body>
 
 </html>
