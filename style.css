@@ -10,6 +10,14 @@ body {
   height: 100vh;
 }
 
+#container.winner {
+  background: rgb(32, 135, 32);
+}
+
+#container.loser {
+  background: rgb(152, 44, 44);
+}
+
 #choice,
 #result {
   display: flex;
