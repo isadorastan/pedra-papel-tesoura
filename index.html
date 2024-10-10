@@ -12,6 +12,7 @@
 <body>
   <div id="container">
     <div id="choice">
+      <p id="score" class="score"></p>
       <div class="icon">🤖</div>
       <h3>Escolha a sua arma:</h3>
       <div class="options">
@@ -45,6 +46,8 @@
     const userChoiceEl = document.getElementById('user-choice');
     const resultLabel = document.getElementById('result-label');
 
+    const scoreLabel = document.getElementById('score');
+
     // event listeners
     rockEl.addEventListener('click', startGame);
     paperEl.addEventListener('click', startGame);
@@ -55,6 +58,7 @@
     let userChoice = '';
     let robotChoice = '';
     let result = '';
+    let score = 0;
 
     const GAME_OPTIONS = ['rock', 'paper', 'scissor'];
     const WINNER_STATE = {
@@ -88,6 +92,13 @@
       robotChoice = handleRobotChoice();
       result = handleResult();
       handleScreenChange();
+      handleScore();
+    }
+
+    function handleScore() {
+      if (result === 'winner') score++;
+      if (result === 'loser') score--;
+      scoreLabel.innerHTML = `Score: ${score}`;
     }
 
     function handleScreenChange() {
