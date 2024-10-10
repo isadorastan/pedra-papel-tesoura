@@ -21,9 +21,9 @@
       </div>
     </div>
     <div id="result">
-      <div class="icon" id="robot-choice">👊🏼</div>
-      <h3 id="result-label">Você venceu</h3>
-      <div class="icon" id="user-choice">👊🏼</div>
+      <div class="icon" id="robot-choice"></div>
+      <h3 id="result-label"></h3>
+      <div class="icon" id="user-choice"></div>
       <button>Jogar novamente!</button>
     </div>
   </div>
@@ -33,6 +33,15 @@
     const rockEl = document.getElementById('rock');
     const paperEl = document.getElementById('paper');
     const scissorEl = document.getElementById('scissor');
+
+    // telas
+    const choiceScreen = document.getElementById('choice');
+    const resultScreen = document.getElementById('result');
+
+    // elementos da tela de resultado
+    const robotChoiceEl = document.getElementById('robot-choice');
+    const userChoiceEl = document.getElementById('user-choice');
+    const resultLabel = document.getElementById('result-label');
 
     // event listeners
     rockEl.addEventListener('click', startGame);
@@ -50,14 +59,35 @@
       'paper': 'rock',
       'scissor': 'paper'
     }
+    const ICONS = {
+      'rock': '👊🏼',
+      'paper': '✋🏼',
+      'scissor': '✌🏼'
+    }
+    const TRANSLATE_RESULT = {
+      'draw': 'Empate',
+      'winner': 'Você ganhou!',
+      'loser': 'Você perdeu'
+    }
 
     function startGame(e) {
       userChoice = e.target.id;
       robotChoice = handleRobotChoice();
-      result = handleWinner();
+      result = handleResult();
       console.log('user:', userChoice);
       console.log('robot:', robotChoice);
       console.log('result', result);
+      handleScreenChange();
+
+    }
+
+    function handleScreenChange() {
+      userChoiceEl.innerHTML = ICONS[userChoice];
+      robotChoiceEl.innerHTML = ICONS[robotChoice];
+      resultLabel.innerHTML = TRANSLATE_RESULT[result];
+
+      resultScreen.style.display = 'flex';
+      choiceScreen.style.display = 'none';
     }
 
     function getRandomInt(min, max) {
@@ -71,7 +101,7 @@
       return GAME_OPTIONS[index];
     }
 
-    function handleWinner() {
+    function handleResult() {
       if (userChoice === robotChoice) return 'draw';
       const userWinsFrom = WINNER_STATE[userChoice];
       if (userWinsFrom === robotChoice) return 'winner';
