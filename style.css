@@ -1,0 +1,46 @@
+html,
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#container {
+  background: rgb(255, 213, 0);
+  width: 100%;
+  height: 100vh;
+}
+
+#choice,
+#result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#choice .options {
+  display: flex;
+  gap: 40px;
+}
+
+#choice .options .icon {
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 60px;
+}
+
+#result {
+  display: none;
+}
+
+#result button {
+  padding: 8px 25px;
+  border-radius: 8px;
+  border: 0;
+  height: 40px;
+  margin-top: 50px;
+  font-weight: bold;
+}
